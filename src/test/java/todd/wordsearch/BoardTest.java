@@ -1,7 +1,6 @@
 package todd.wordsearch;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -20,14 +19,16 @@ public class BoardTest {
 
     @Before
     public void init() {
-        List<String> grid = asList("ABC",
-                "DEF",
-                "GHI");
+        List<String> grid = asList("A,B,C",
+                "D,E,F",
+                "G,H,I");
         List<String> validWords = asList(new String[]{
                 "AB",
                 "BC",
                 "DE",
-                "AD"
+                "AD",
+                "AEI",
+                "IEA"
         });
         board = new Board(grid, validWords);
     }
@@ -62,6 +63,25 @@ public class BoardTest {
                 new GridCoordinate(0, 0),
                 new GridCoordinate(0, 1));
         assertThat(board.find("AD")).isEqualTo(expectedCoords);
+    }
+
+    @Test
+    public void findsAEI() {
+        List<GridCoordinate> expectedCoords = asList(
+                new GridCoordinate(0, 0),
+                new GridCoordinate(1, 1),
+                new GridCoordinate(2,2));
+        assertThat(board.find("AEI")).isEqualTo(expectedCoords);
+    }
+
+
+    @Test
+    public void findsIEA() {
+        List<GridCoordinate> expectedCoords = asList(
+                new GridCoordinate(2, 2),
+                new GridCoordinate(1, 1),
+                new GridCoordinate(0,0));
+        assertThat(board.find("IEA")).isEqualTo(expectedCoords);
     }
 
     @Test

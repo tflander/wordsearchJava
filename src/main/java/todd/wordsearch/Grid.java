@@ -1,5 +1,6 @@
 package todd.wordsearch;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Grid {
@@ -7,7 +8,10 @@ public class Grid {
     private final List<String> grid;
 
     public Grid(List<String> grid) {
-        this.grid = grid;
+        this.grid = new ArrayList<>();
+        grid.forEach(rowWithCommas -> {
+            this.grid.add(rowWithCommas.replaceAll(",", ""));
+        });
     }
 
     public int height() {

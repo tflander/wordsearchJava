@@ -1,5 +1,6 @@
 package todd.wordsearch;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,9 +26,7 @@ public class Board {
                     for (int y = 0; y < grid.height(); ++y) {
                         for (int x = 0; x < grid.width(); ++x) {
                             if (matchesWordWithDirection(wordToFind, xDir, yDir, x, y)) {
-                                return Arrays.asList(
-                                        new GridCoordinate(x, y),
-                                        new GridCoordinate(x + xDir, y + yDir));
+                                return getGridCoordinates(wordToFind, xDir, yDir, x, y);
                             }
                         }
                     }
@@ -35,6 +34,18 @@ public class Board {
             }
         }
         throw new IllegalStateException("word not found");
+    }
+
+    private List<GridCoordinate> getGridCoordinates(String wordToFind, int xDir, int yDir, int x, int y) {
+        List<GridCoordinate> result = new ArrayList<>();
+        int currX = x;
+        int currY = y;
+        for(int i = 0; i < wordToFind.length(); ++i) {
+            result.add(new GridCoordinate(currX, currY));
+            currX += xDir;
+            currY += yDir;
+        }
+        return result;
     }
 
     private boolean matchesWordWithDirection(String wordToFind, int xDir, int yDir, int x, int y) {
