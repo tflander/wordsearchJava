@@ -13,16 +13,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class BoardTest {
 
     private Board board;
+
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
     @Before
     public void init() {
-        List<String> grid = asList(new String[]{
-                "ABC",
+        List<String> grid = asList("ABC",
                 "DEF",
-                "GHI"
-        });
+                "GHI");
         List<String> validWords = asList(new String[]{
                 "AB",
                 "BC"
@@ -32,10 +31,8 @@ public class BoardTest {
 
     @Test
     public void findsAB() {
-        List<GridCoordinate> expectedCoords = asList(new GridCoordinate[]{
-                new GridCoordinate(0, 0),
-                new GridCoordinate(1, 0)
-        });
+        List<GridCoordinate> expectedCoords = asList(new GridCoordinate(0, 0),
+                new GridCoordinate(1, 0));
         assertThat(board.find("AB")).isEqualTo(expectedCoords);
     }
 

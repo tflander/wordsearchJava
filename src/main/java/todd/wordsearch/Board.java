@@ -18,9 +18,16 @@ public class Board {
         if(!validWords.contains(ab)) {
             throw new IllegalArgumentException("Word [" + ab + "] is not valid for the board.");
         }
-        return Arrays.asList(new GridCoordinate[] {
+        return Arrays.asList(
                 new GridCoordinate(0,0),
-                new GridCoordinate(1, 0)
-        });
+                new GridCoordinate(1, 0));
+    }
+
+    public List<String> getGrid() {
+        return grid;
+    }
+
+    public List<String> getValidWords() {
+        return validWords;
     }
 }
